@@ -12,6 +12,7 @@ public class Welcome {
 
     /**
      * Статус авторизации
+     * <b>GET</b> запрос
      * @param principal
      * @return result : OK - авторизован, result : ANONYM - не авторизован
      *  */
@@ -25,6 +26,7 @@ public class Welcome {
 
     /**
      * Нет доступа
+     * <b>GET</b> запрос
      * @return ACCESS_DENIED
      * */
     @RequestMapping(value = "404")

@@ -18,27 +18,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * <h1><b>Опреции над друзьями</b></h1>
+ * Created by LucidMinds on 15.05.16.
+ * */
 @RestController
 @RequestMapping(value = "api/v1/friend")
 @Secured({Roles.ROLE_ADMIN, Roles.ROLE_USER, Roles.ROLE_EDITOR, Roles.ROLE_SUPER_ADMIN})
 public class FriendController {
 
     @Autowired
-    FriendAdd friendAdd;
+    private FriendAdd friendAdd;
     @Autowired
-    FriendDelete friendDelete;
+    private FriendDelete friendDelete;
     @Autowired
-    FriendUtils getFriendByStatus;
+    private FriendUtils getFriendByStatus;
     @Autowired
-    FriendUtils friendUtils;
+    private FriendUtils friendUtils;
     @Autowired
-    UserDetailsServiceImpl userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     /**
-     * список пользователей подавших заявку на дружбу
-     * @return Пользователей
+     * <b>Получить список пользователей подавших заявку на дружбу</b> - <i>host/api/v1/friend/new</i> <br>
+     * <b>GET</b> запрос
+     * @return Списиок пользователей
      * */
     @RequestMapping(value = "new", method = RequestMethod.GET)
     public List<User> newUsers() {
@@ -58,8 +63,9 @@ public class FriendController {
     }
 
     /**
-     * список пользователей которым подали заявку на дружбу
-     * @return Пользователей
+     * <b>Получить список пользователей которым отправили заявку на дружбу </b>- <i>host/api/v1/friend/requests</i> <br>
+     * <b>GET</b> запрос
+     * @return Список пользователей
      * */
     @RequestMapping(value = "requests", method = RequestMethod.GET)
     public List<User> requestUsers() {
@@ -79,8 +85,9 @@ public class FriendController {
     }
 
     /**
-     * список пользователей с которыми в состоянии дружбы
-     * @return Пользователей
+     * <b>Получить список пользователей с которыми в состоянии дружбы</b> - <i>host/api/v1/friend/friends</i> <br>
+     * <b>GET</b> запрос
+     * @return Список пользователей
      * */
     @RequestMapping(value = "friends", method = RequestMethod.GET)
     public List<User> getFriends() {
@@ -100,8 +107,9 @@ public class FriendController {
     }
 
     /**
-     * список подписанных пользователей
-     * @return Пользователей
+     * <b>Получить список подписчиков</b> - <i>host/api/v1/friend/subscribers</i> <br>
+     * <b>GET</b> запрос
+     * @return Список пользователей
      * */
     @RequestMapping(value = "subscribers", method = RequestMethod.GET)
     public List<User> getSubscribers() {
@@ -121,8 +129,9 @@ public class FriendController {
     }
 
     /**
-     * список пользователей на которых отправил запрос на дружбу
-     * @return Пользователей
+     * <b>Получить список пользователей на которых отправил запрос на дружбу</b> - <i>host/api/v1/friend/follow</i> <br>
+     * <b>GET</b> запрос
+     * @return Список пользователей
      * */
     @RequestMapping(value = "follow", method = RequestMethod.GET)
     public List<User> getRequestUsers() {
@@ -142,14 +151,15 @@ public class FriendController {
     }
 
     /**
-     * узнать состояние дружбы с определенным пользователем
+     * <b>Узнать состояние дружбы с определенным пользователем</b> - <i>host/api/v1/friend/status/{id}</i> <br>
+     * <b>GET</b> запрос
      * @param id id пользователя
-     * @return FRIEND - друзья
-     * REQUEST - отправил заявку
-     * NEW - получил заявку
-     * FOLLOW - подписан
-     * SUBSCRIBER - подписчик
-     * CURRENT_USER - текущий пользователь
+     * @return FRIEND - друзья <br>
+     * REQUEST - отправил заявку <br>
+     * NEW - получил заявку <br>
+     * FOLLOW - подписан <br>
+     * SUBSCRIBER - подписчик <br>
+     * CURRENT_USER - текущий пользователь <br>
      * NULL - не состоит в дружеских отношениях
      * */
     @RequestMapping(value = "status/{id}", method = RequestMethod.GET)
@@ -167,13 +177,14 @@ public class FriendController {
     }
 
     /**
-     * Отправить запрос на дружбу
+     * <b>Отправить, принять запрос на дружбу</b> - <i>host/api/v1/friend/add</i> <br>
+     * <b>POST</b> запрос
      * @param id id пользователя
      * @return
-     *  SUCCESS - добавлено
-     *  FRIEND - друг
-     *  REQUEST - запрос был отправлен
-     *  CURRENT_USER - сам себя
+     *  SUCCESS - добавлено <br>
+     *  FRIEND - друг <br>
+     *  REQUEST - запрос был отправлен <br>
+     *  CURRENT_USER - сам себя <br>
      *  ERROR - ошибка
      *  */
     @RequestMapping(value = "add", method = RequestMethod.POST)
@@ -184,11 +195,12 @@ public class FriendController {
     }
 
     /**
-     * Удалить из друзей, отменить подписку
+     * <b>Удалить из друзей, отменить подписку</b> - <i>host/api/v1/friend/delete</i> <br>
+     * <b>POST</b> запрос
      * @param id id пользователя
      * @return
-     *  SUCCESS - удален и добавлен в список подписчиков
-     *  SUBSCRIBER - раннее был удален и находится в списке подписчиков
+     *  SUCCESS - удален и добавлен в список подписчиков <br>
+     *  SUBSCRIBER - раннее был удален и находится в списке подписчиков <br>
      *  ERROR - ошибка
      * */
     @RequestMapping(value = "delete", method = RequestMethod.POST)

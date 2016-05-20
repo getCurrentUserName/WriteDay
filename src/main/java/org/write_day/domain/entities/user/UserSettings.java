@@ -37,7 +37,7 @@ public class UserSettings {
     private String messageAccess;
 
     @JsonBackReference
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "settings", optional = true)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "settings")
     private User userId;
 
     public UUID getId() {

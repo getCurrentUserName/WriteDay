@@ -33,12 +33,12 @@ public class FriendUtils {
             return FriendStatus.NULL;
         }
         User anotherUser = friend.getSecondUser();
-        User thisUser = friend.getFirstUser();
+        User firstUser = friend.getFirstUser();
 
         if (currentUser.getId().equals(anotherUser.getId())) {
             return FriendStatus.valueOf(friend.getSecondUserStatus());
         }
-        if (currentUser.getId().equals(thisUser.getId())) {
+        if (currentUser.getId().equals(firstUser.getId())) {
             return FriendStatus.valueOf(friend.getFirstUserStatus());
         }
         return FriendStatus.NULL;

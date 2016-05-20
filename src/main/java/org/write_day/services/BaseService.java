@@ -31,8 +31,8 @@ public class BaseService {
     }
 
     @Async
-    public CommandStatus asyncPersist(Object object) {
-        return baseDAO.persist(object);
+    public void asyncPersist(Object object) {
+        baseDAO.persist(object);
     }
 
     public UUID save(Object object) {
@@ -50,4 +50,21 @@ public class BaseService {
     public CommandStatus delete(Object object) {
         return baseDAO.delete(object);
     }
+
+    public <T> List<T> findByCriteria(Class<T> type, String param, Object value, int first) {
+        return baseDAO.findByCriteria(type, param, value, first, max);
+    }
+
+    public <T> List<T> findByCriteria(Class<T> type, String param, Object value, String param2, Object value2, int first) {
+        return baseDAO.findByCriteria(type, param, value, param2, value2, first, max);
+    }
+
+    public <T> List<T> findByCriteria(Class<T> type, String param, Object value) {
+        return baseDAO.findByCriteria(type, param, value);
+    }
+
+    public <T> List<T> findByCriteria(Class<T> type, String param, Object value, String param2, Object value2) {
+        return baseDAO.findByCriteria(type, param, value, param2, value2);
+    }
+
 }

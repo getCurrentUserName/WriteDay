@@ -19,6 +19,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * <h1><b>POST заросы для обновления, изменения профиля пользователя</b></h1>
+ * Created by LucidMinds on 15.05.16.
+ * package org.write_day.web.api.v1.user; <br>
+ */
 @RestController
 @RequestMapping(value = "api/v1/update")
 @PropertySource(value = { "classpath:app.properties" })
@@ -38,10 +43,11 @@ public class UserUpdateController {
     Environment env;
 
     /**
-     * Обновить пароль - host/api/v1/update/password
+     * <b>Обновить пароль</b> - host/api/v1/update/password <br>
+     * <b>POST</b> запрос
      * @param password новый пароль
-     * @return result : SUCCESS - успешно
-     *         result : ERROR - ошибка
+     * @return result : SUCCESS - успешно <br>
+     *         result : ERROR - ошибка <br>
      *         result : ACCESS_DENIED - нет доступа
      * */
     @RequestMapping(value = "password", method = RequestMethod.POST)
@@ -52,10 +58,11 @@ public class UserUpdateController {
     }
 
     /**
-     * Обновить логин - host/api/v1/update/username
+     * <b>Обновить логин</b> - host/api/v1/update/username <br>
+     * <b>POST</b> запрос
      * @param username новый логин
-     * @return result : SUCCESS - успешно
-     *         result : ERROR - ошибка
+     * @return result : SUCCESS - успешно <br>
+     *         result : ERROR - ошибка <br>
      *         result : ACCESS_DENIED - нет доступа
      * */
     @RequestMapping(value = "username", method = RequestMethod.POST)
@@ -66,10 +73,11 @@ public class UserUpdateController {
     }
 
     /**
-     * Обновить ник - host/api/v1/update/nickname
+     * <b>Обновить ник</b> - host/api/v1/update/nickname <br>
+     * <b>POST</b> запрос
      * @param nickname новый ник
-     * @return result : SUCCESS - успешно
-     *         result : ERROR - ошибка
+     * @return result : SUCCESS - успешно <br>
+     *         result : ERROR - ошибка <br>
      *         result : ACCESS_DENIED - нет доступа
      * */
     @RequestMapping(value = "nickname", method = RequestMethod.POST)
@@ -80,10 +88,11 @@ public class UserUpdateController {
     }
 
     /**
-     * Обновить имя - host/api/v1/update/firstName
+     * <b>Обновить имя</b> - host/api/v1/update/firstName <br>
+     * <b>POST</b> запрос
      * @param firstName новое имя
-     * @return result : SUCCESS - успешно
-     *         result : ERROR - ошибка
+     * @return result : SUCCESS - успешно <br>
+     *         result : ERROR - ошибка <br>
      *         result : ACCESS_DENIED - нет доступа
      * */
     @RequestMapping(value = "firstName", method = RequestMethod.POST)
@@ -95,10 +104,11 @@ public class UserUpdateController {
     }
 
     /**
-     * Обновить фамилию - host/api/v1/update/lastName
+     * <b>Обновить фамилию</b> - host/api/v1/update/lastName <br>
+     * <b>POST</b> запрос
      * @param lastName новая фамилия
-     * @return result : SUCCESS - успешно
-     *         result : ERROR - ошибка
+     * @return result : SUCCESS - успешно <br>
+     *         result : ERROR - ошибка <br>
      *         result : ACCESS_DENIED - нет доступа
      * */
     @RequestMapping(value = "lastName", method = RequestMethod.POST)
@@ -110,10 +120,11 @@ public class UserUpdateController {
     }
 
     /**
-     * Обновить номер - host/api/v1/update/phone
+     * <b>Обновить номер</b> - host/api/v1/update/phone <br>
+     * <b>POST</b> запрос
      * @param phone новый номер
-     * @return result : SUCCESS - успешно
-     *         result : ERROR - ошибка
+     * @return result : SUCCESS - успешно <br>
+     *         result : ERROR - ошибка <br>
      *         result : ACCESS_DENIED - нет доступа
      * */
     @RequestMapping(value = "phone", method = RequestMethod.POST)
@@ -125,10 +136,11 @@ public class UserUpdateController {
     }
 
     /**
-     * Обновить email - host/api/v1/update/email
+     * <b>Обновить email</b> - host/api/v1/update/email <br>
+     * <b>POST</b> запрос
      * @param email новый email
-     * @return result : SUCCESS - успешно
-     *         result : ERROR - ошибка
+     * @return result : SUCCESS - успешно <br>
+     *         result : ERROR - ошибка <br>
      *         result : ACCESS_DENIED - нет доступа
      * */
     @RequestMapping(value = "email", method = RequestMethod.POST)
@@ -140,10 +152,11 @@ public class UserUpdateController {
     }
 
     /**
-     * Обновить изображение профиля - host/api/v1/update/image
+     * <b>Обновить изображение профиля</b> - host/api/v1/update/image <br>
+     * <b>POST</b> запрос
      * @param image новое изображение профиля
-     * @return result : SUCCESS - успешно
-     *         result : ERROR - ошибка
+     * @return result : SUCCESS - успешно <br>
+     *         result : ERROR - ошибка <br>
      *         result : ACCESS_DENIED - нет доступа
      * */
     @RequestMapping(value = "image", method = RequestMethod.POST)
@@ -155,11 +168,14 @@ public class UserUpdateController {
 
 
     /**
-     * Обновить ник - host/api/v1/update/role
+     * <b>Обновить ник</b> - host/api/v1/update/role <br>
+     * только для ROLE_ADMIN, ROLE_EDITOR, ROLE_SUPER_ADMIN <br>
+     * <b>POST</b> запрос
      * @param role новый роль ROLE_USER или ROLE_EDITOR
-     * @return result : SUCCESS - успешно
-     *         result : ERROR - ошибка
-     *         result : ACCESS_DENIED - нет доступа
+     * @return result : SUCCESS - успешно <br>
+     *         result : ERROR - ошибка <br>
+     *         result : ACCESS_DENIED - нет доступа <br>
+     *         result : BAD_REQUEST - неправильный запрос <br>
      * */
     @Secured({Roles.ROLE_ADMIN, Roles.ROLE_EDITOR, Roles.ROLE_SUPER_ADMIN})
     @RequestMapping(value = "role", method = RequestMethod.POST)

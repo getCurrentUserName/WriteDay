@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * <h1><b>Регистрация</b></h1>
+ * */
 @RestController
+@RequestMapping(value = "api/v1")
 @Secured({Roles.ROLE_ANONYMOUS})
 public class RestRegister {
 
@@ -21,18 +25,20 @@ public class RestRegister {
     UserService userService;
 
     /**
-     * Регистрация host/api/v1/register - POST запрос
+     * <b>Регистрация</b> - host/api/v1/register <br>
+     * <b>POST</b> запрос
      * @param username логин
      * @param password пароль
      * @param nickname ник
      * @param firstName имя
      * @param lastName фамилия
      * @param email email
-     * @return result = SUCCESS - регистрация прошла успешно
-     *         result = ERROR - ошибка при регистрации
-     *         result = USERNAME_EXIST - имя пользователя занято
+     * @return result = SUCCESS - регистрация прошла успешно <br>
+     *         result = ERROR - ошибка при регистрации <br>
+     *         result = USERNAME_EXIST - имя пользователя занято <br>
+     *         result = EMAIL_EXIST - email пользователя занято
      * */
-    @RequestMapping(value = "api/v1/register", method = RequestMethod.POST)
+    @RequestMapping(value = "register", method = RequestMethod.POST)
     @Secured({Roles.ROLE_ANONYMOUS})
     public ResponseResult register(@RequestParam(value = "username") String username,
                                    @RequestParam(value = "password") String password,

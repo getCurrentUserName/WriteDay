@@ -1,5 +1,7 @@
 package org.write_day.dao;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.scheduling.annotation.Async;
 import org.write_day.components.enums.CommandStatus;
 import org.hibernate.Session;
@@ -78,6 +80,45 @@ public class BaseDAO {
 
     public UUID save(Object object) {
         return (UUID) getSession().save(object);
+    }
+
+
+    @SuppressWarnings("unchecked")
+    public <T> List<T> findByCriteria(Class<T> type,  String param, Object value,  String param2, Object value2, int first, int max) {
+        Criteria criteria = getSession().createCriteria(type);
+        criteria.add(Restrictions.eq(param, value));
+        criteria.add(Restrictions.eq(param2, value2));
+        criteria.setFirstResult(first);
+        criteria.setMaxResults(max);
+        criteria.setCacheable(true);
+        return criteria.list();
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> List<T> findByCriteria(Class<T> type,  String param, Object value, int first, int max) {
+        Criteria criteria = getSession().createCriteria(type);
+        criteria.add(Restrictions.eq(param, value));
+        criteria.setFirstResult(first);
+        criteria.setMaxResults(max);
+        criteria.setCacheable(true);
+        return criteria.list();
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> List<T> findByCriteria(Class<T> type,  String param, Object value,  String param2, Object value2) {
+        Criteria criteria = getSession().createCriteria(type);
+        criteria.add(Restrictions.eq(param, value));
+        criteria.add(Restrictions.eq(param2, value2));
+        criteria.setCacheable(true);
+        return criteria.list();
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> List<T> findByCriteria(Class<T> type,  String param, Object value) {
+        Criteria criteria = getSession().createCriteria(type);
+        criteria.add(Restrictions.eq(param, value));
+        criteria.setCacheable(true);
+        return criteria.list();
     }
 
 }

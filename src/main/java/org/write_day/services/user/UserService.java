@@ -44,7 +44,7 @@ public class UserService extends BaseService {
         return userDAO.getUserProfile(username);
     }
 
-    public List<User> findByNickname(String nickname, int max, int first) {
+    public List<User> findByNickname(String nickname, int first) {
         return userDAO.findByNickname(nickname, max, first);
     }
 

@@ -1,4 +1,4 @@
-package org.write_day.config;
+package org.write_day.components.beans;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
